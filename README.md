@@ -20,7 +20,7 @@ The scenarios can be written using BDD methodology.
 On each declared step you can insert the calls defined from service classes -->
 
 ## System Requirements: 
-+ jdk: https://docs.oracle.com/en/java/javase/index.html 
++ jdk: https://docs.oracle.com/en/java/javase/index.html (compatible jdk versions 1.8/14/17)
 + maven: https://maven.apache.org/download.cgi 
 + git client: https://www.atlassian.com/git/tutorials/install-git 
 + docker 18.09+: https://docs.docker.com/install/linux/docker-ce/ubuntu/  _OPTIONAL_ 
@@ -70,7 +70,7 @@ This sample project includes the required components as binaries, docker contain
       OUTPUT:
         Apache Maven 3.8.2 (ea98e05a04480131370aa0c110b8c54cf726c06f)
         Maven home: /opt/apache-maven-3.8.2
-        Java version: 13.0.5.1, vendor: Debian, runtime: /usr/lib/jvm/java-13-openjdk-amd64
+        Java version: 17.0.9, vendor: Debian, runtime: /usr/lib/jvm/java-17-openjdk-amd64
         Default locale: en_US, platform encoding: UTF-8
         OS name: "linux", version: "5.10.0-6parrot1-amd64", arch: "amd64", family: "unix"
     ```
@@ -96,11 +96,28 @@ This sample project includes the required components as binaries, docker contain
 
   + ### Third Step
 
-    + To run the tests with maven, we must execute the following command:   
+  + To run the tests with maven, we must execute the following command:
 
+  ```
+  $ mvn clean test
+
+  ```
+  + Additionally, other options are available for running the tests, as outlined in the following table:
     ```
-    $ mvn clean test
-    ```
+        * -D is used to define system properties or command-line properties, which Maven will utilize during the project's building and/or execution process.
+        * Using -P followed by the profile name allows Maven to apply the configurations associated with that specific profile during the project's build process.
+        * -Pparallel: indicates the profile that enables the opening of multiple execution threads.
+        * -PchromeHeadless: indicates the profile that runs in headless mode, meaning it does not open the browser.
+
+
+           |                                   Command                                              |                        Description                             |
+           |----------------------------------------------------------------------------------------|----------------------------------------------------------------|
+           | clean test -DforkCount=0                                                               | In case you need to debug, for use in the IDE runner           |
+           | mvn clean test -DforkCount=0  "-Dcucumber.tags=@Smoke"                                 | Specifying a tag and including the debug option                |
+           | mvn clean test -Pparallel -PchromeHeadless -Plocal                                     | Multiple profiles enabled                                      |
+           | mvn clean test -PLocal -PchromeHeadless "-Dcucumber.tags=@Accounts and @Regression"    | Multiple tags and profiles enabled                             |
+  ```
+
 
 - ## Running with Docker
 
@@ -193,7 +210,26 @@ Note that the following structure is part of the report generated with ExtentRep
 #### Cards template:   
    ![cards_report](docs/images/cards_report.png)
 
+## Lippia Test Manager
+This integration uses an adaptar that automatically ingests results of Scenarios into Lippia Test Manager.
+You just simply need to implement [_LTM-adapter-cucumber4-JVM_](https://github.com/Crowdar/LTM-adapter-cucumber4-JVM) and you can see the results in Lippia Test Manager as an Automated Run Result.
+To configure your automation project to inject results into LTM, you should do the following things:
 
+Include property reference ${test-manager.report} in cucumber options (pom.xml)
+To set following properties, you need obtain an account in LTM (visit the web https://www.lippia.io/ to start free trial account)
+Properties:
+
+TEST_MANAGER_API_HOST: https://example.com
+
+TEST_MANAGER_RUN_NAME: id run in project
+
+TEST_MANAGER_PROJECT_CODE: id project to inject test execution results
+
+TEST_MANAGER_USERNAME: username Account LTM
+
+TEST_MANAGER_PASSWORD: password Account LTM
+    ![ltm-runLists](docs/images/LTM-RunLists.png)
+    ![ltm-run](docs/images/LTM-RunAutomatedResult.png)
 
 ## Project structure
 
@@ -429,14 +465,14 @@ Feature: As a potential client i need to search in google to find a web site
 
 The test cases are executed using **TestNG** class. This class is the main entry point for running tests in the TestNG framework. By creating their own TestNG object and invoke it on a testng.xml.
 
-|**Attribute** | **Description** | 
-|--------------|-----------------| 
-|name   | The name of this suite. It is a **mandatory** attribute. |  
-|verbose   | Whether TestNG should run different threads to run this suite. |  
-|parallel   | Whether TestNG should run different threads to run this suite. |
-|thread-count   | The number of threads to use, if parallel mode is enabled (ignored other-wise). |  
-|annotations   | The type of annotations you are using in your tests. |  
-|time-out   | The default timeout that will be used on all the test methods found in this test. |  
+    | **Attribute**                     | **Description**                                                                   | 
+    |-----------------------------------|-----------------------------------------------------------------------------------| 
+    | name                              | The name of this suite. It is a **mandatory** attribute.                          |  
+    | verbose                           | Whether TestNG should run different threads to run this suite.                    |  
+    | parallel                          | Whether TestNG should run different threads to run this suite.                    |
+    | thread-count                      | The number of threads to use, if parallel mode is enabled (ignored other-wise).   |  
+    | annotations                       | The type of annotations you are using in your tests.                              |  
+    | time-out                          | The default timeout that will be used on all the test methods found in this test. |  
 
 ### testngSecuencial.xml  
 
@@ -492,4 +528,15 @@ A Project Object Model or POM is the fundamental unit of work in Maven. It is an
 ```
         <runner>testngParallel.xml</runner>
 ```        
-pepe
+### How to avoid data concurrency:
+
+- In our Lippia core we have a class called **MyThreadLocal** which allows us to save variables in independent threads for each execution. This functionality provides us with the solution to data concurrency in parallel executions.
+
+Use the setData() method to save our variables:
+```
+MyThreadLocal.setData(key, value)
+```
+Use the getData() method to obtain the value of our variable saved in our thread:
+```
+MyThreadLocal.getData(key)
+``` 

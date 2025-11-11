@@ -1,0 +1,66 @@
+package lippia.web.constants;
+
+public class ProductConstants {
+
+    public static final String ADD_TO_BASKET_BUTTON = "xpath://button[text()='Add to basket']";
+    public static final String SHOP_BUTTON = "xpath://*[@id=\"menu-item-40\"]/a";
+    public static final String SELENIUM_RUBY_BUTTON = "xpath://*[@id=\"text-22-sub_row_1-0-2-0-0\"]/div/ul/li/a[1]/img";
+    public static final String THINKING_HTML_BUTTON = "xpath://*[@id=\"text-22-sub_row_1-0-2-1-0\"]/div/ul/li/a[1]/img";
+    public static final String MASTERING_JAVASCRIPT_BUTTON = "xpath://*[@id=\"text-22-sub_row_1-0-2-2-0\"]/div/ul/li/a[1]/img";
+    public static final String VIEW_BASKET_BUTTON ="xpath://*[@id=\"content\"]/div[1]/a";
+    public static final String UPDATE_BASKET_BUTTON = "xpath://input[@name='update_cart' and @value='Update Basket']";
+    public static final String MY_ACCOUNT_BUTTON = "xpath://a[text()='My Account']";
+    public static final String QUANTITY_BASKET = "xpath://*[@id=\"page-34\"]/div/div[1]/form/table/tbody/tr[1]/td[5]/div/input";
+    public static final String TOTAL_BASKET = "xpath://*[@id=\"page-34\"]/div/div[1]/form/table/tbody/tr[1]/td[6]/span";
+    public static final String HOME_BUTTON = "xpath://*[@id=\"site-logo\"]/a";
+    public static final String EMAIL_TEXTBOX = "xpath://*[@id=\"username\"]";
+    public static final String PASSWORD_TEXTBOX = "xpath://*[@id=\"password\"]";
+    public static final String LOGIN_BUTTON = "xpath://*[@id=\"customer_login\"]/div[1]/form/p[3]/input[3]";
+    public static final String ERROR_MESSAGE = "xpath://*[@id=\"page-36\"]/div/div[1]/ul";
+    public static final String ANDROID_CATEGORY_BUTTON = "xpath://a[(text())='Android']";
+    public static final String HTML_CATEGORY_BUTTON ="xpath://a[(text())='HTML']" ;
+    public static final String JAVASCRIPT_CATEGORY_BUTTON ="xpath://a[(text())='JavaScript']" ;
+    public static final String SELENIUM_CATEGORY_BUTTON = "xpath://a[(text())='selenium']";
+    public static final String SELECTED_SHOP_CATEGORY = "xpath://nav[@class='woocommerce-breadcrumb']";
+    public static final String POPULARITY_DROPDOWN_BUTTON = "xpath://*[@id=\"content\"]/form/select/option[2]";
+    public static final String RATING_DROPDOWN_BUTTON = "xpath://*[@id=\"content\"]/form/select/option[3]";
+    public static final String NEWNESS_DROPDOWN_BUTTON = "xpath://*[@id=\"content\"]/form/select/option[4]";
+    public static final String LOWTOHIGH_DROPDOWN_BUTTON = "xpath://*[@id=\"content\"]/form/select/option[5]";
+    public static final String HIGHTOLOW_DROPDOWN_BUTTON = "xpath://*[@id=\"content\"]/form/select/option[6]";
+    public static final String REGISTER_EMAIL_TEXTBOX = "xpath://*[@id=\"reg_email\"]";
+    public static final String REGISTER_PASSWORD_TEXTBOX = "xpath://*[@id=\"reg_password\"]";
+    public static final String SUBTOTAL_VALUE = "xpath://*[@id=\"page-34\"]/div/div[1]/div/div/table/tbody/tr[1]/td/span";
+    public static final String TOTAL_VALUE = "xpath://*[@id=\"page-34\"]/div/div[1]/div/div/table/tbody/tr[3]/td/strong/span";
+    public static final String CHECKOUT_BUTTON = "xpath://*[@id=\"page-34\"]/div/div[1]/div/div/div/a";
+    public static final String FIRST_NAME_TEXTBOX = "xpath://*[@id=\"billing_first_name\"]";
+    public static final String LAST_NAME_TEXTBOX = "xpath://*[@id=\"billing_last_name\"]";
+    public static final String EMAIL_BILL_TEXTBOX = "xpath://*[@id=\"billing_email\"]";
+    public static final String PHONE_TEXTBOX = "xpath://*[@id=\"billing_phone\"]";
+    public static final String ADDRESS_TEXTBOX = "xpath://*[@id=\"billing_address_1\"]";
+    public static final String TOWN_TEXTBOX = "xpath://*[@id=\"billing_city\"]";
+    public static final String POSTCODE_TEXTBOX = "xpath://*[@id=\"billing_postcode\"]";
+    public static final String DIRECT_BANK_TRANSFER_BUTTON = "xpath://input[@id='payment_method_bacs']";
+    public static final String CHECK_PAYMENT_BUTTON = "xpath://input[@id='payment_method_cheque']"; //
+    public static final String CASH_ON_DELIVERY_BUTTON = "xpath://input[@id='payment_method_cod']";
+    public static final String PAYPAL_EXPRESS_CHECKOUT_BUTTON = "xpath://input[@id='payment_method_ppec_paypal']";
+    public static final String CHECKOUT_COUPON_BUTTON = "xpath://*[@id=\"page-35\"]/div/div[1]/div[2]/a";
+    public static final String CHECKOUT_COUPON_TEXTBOX = "xpath://*[@id=\"coupon_code\"]";
+    public static final String PLACE_ORDER_BUTTON = "xpath://*[@id=\"place_order\"]";
+    public static final String ORDER_RECEIVED_MESSAGE = "xpath://*[@id=\"page-35\"]/div/div[1]/p[1]";
+    public static final String LOGOUT_BUTTON = "xpath://*[@id=\"page-36\"]/div/div[1]/nav/ul/li[6]/a";
+    public static final String ANDROID_QUICK_SHOP_BUTTON = "xpath://*[@id=\"content\"]/ul/li[1]/a[2]";
+    public static final String FUNCTIONAL_PROGRAMMING_SHOP_BUTTON = "xpath://*[@id=\"content\"]/ul/li[2]/a[2]";
+    public static final String HTML5_FORMS_SHOP_BUTTON = "xpath://*[@id=\"content\"]/ul/li[3]/a[2]";
+    public static final String HTML5_WEBAPP_SHOP_BUTTON = "xpath://*[@id=\"content\"]/ul/li[4]/a[2]";
+    public static final String SELENIUM_RUBY_SHOP_BUTTON = "xpath://*[@id=\"content\"]/ul/li[7]/a[2]";
+    public static final String MASTERING_JAVASCRIPT_SHOP_BUTTON = "xpath://*[@id=\"content\"]/ul/li[6]/a[2]";
+    public static final String JS_DATA_SHOP_BUTTON = "xpath://*[@id=\"content\"]/ul/li[5]/a[2]";
+    public static final String THINKING_IN_SHOP_BUTTON = "xpath://*[@id=\"content\"]/ul/li[8]/a[2]";
+    public static final String BASKET_MENU_BUTTON = "xpath:(//a[@title='View Basket'])[last()]";
+    public static final String CHECKOUT_TAXES_VALUE = "xpath://*[@id=\"order_review\"]/table/tfoot/tr[2]/td/span";
+    public static final String COUNTRY_TEXTBOX = "xpath://*[@id=\"select2-chosen-1\"]";
+    public static final String ACCOUNT_DETAILS_BUTTON = "xpath://*[@id=\"page-36\"]/div/div[1]/nav/ul/li[5]/a";
+    public static final String CURRENT_PASSWORD_LABEL = "xpath://*[@id=\"page-36\"]/div/div[1]/div/form/fieldset/p[1]/label";
+    public static final String LOGIN_MESSAGE = "xpath://*[@id=\"page-36\"]/div/div[1]/div/p[1]";
+    public static final String COUNTRY_SEARCH_TEXTBOX = "xpath://*[@id=\"s2id_autogen1_search\"]";
+}

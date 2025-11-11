@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>io.lippia</groupId>
 		<artifactId>root</artifactId>
-		<version>3.3.0.0</version>
+		<version>3.3.0.2</version>
 	</parent>
 
 	<groupId>Lippia-Web-Example-Project</groupId>
@@ -27,15 +27,19 @@
 
 		<!-- cucumber options -->
 		<cucumber.stepsDefinitions>--glue / </cucumber.stepsDefinitions>
-		<cucumber.hooks>--glue	com/crowdar/bdd/cukes/hooks</cucumber.hooks>
-		<cucumber.tags>@Smoke</cucumber.tags>
+		<cucumber.hooks>--glue	lippia/web/hooks</cucumber.hooks>
+		<cucumber.tags>@testalan</cucumber.tags>
 		<pretty.plugin>--plugin pretty</pretty.plugin>
+		<crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin com.crowdar.examples.listeners.CucumberListener:</crowdar.cucumber.plugins>
+		<crowdar.extent.host.name>LocalMachine</crowdar.extent.host.name>
+		<crowdar.extent.environment>Local</crowdar.extent.environment>
+		<crowdar.extent.user.name>User.name</crowdar.extent.user.name>
 		<cucumber.report>--plugin lippia.web.reporters.CucumberReporter:</cucumber.report>
 		<test-manager.report>--plugin lippia.web.reporters.TestManagerReporter:</test-manager.report>
 		<crowdar.cucumber.option>src/test/resources/web/features ${cucumber.hooks} ${cucumber.stepsDefinitions} --tags 'not @Ignore' --tags ${cucumber.tags} ${cucumber.report}</crowdar.cucumber.option>
 
 		<!-- client project custom properties -->
-		<web-app.url>http://www.google.com.ar</web-app.url>
+		<web-app.url>https://www.google.com/</web-app.url>
 
 	</properties>
 	<profiles>
@@ -119,18 +123,19 @@
 		<dependency>
 			<groupId>io.lippia</groupId>
 			<artifactId>core</artifactId>
-			<version>3.3.0.0</version>
+			<version>3.3.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>io.lippia.report</groupId>
 			<artifactId>ltm-cucumber4-adapter</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>io.lippia.report</groupId>
 			<artifactId>extentreports-cucumber4-adapter</artifactId>
 			<version>1.1.0.10</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.luben/zstd-jni -->
 	</dependencies>
 	<build>
 		<filters>
@@ -147,26 +152,32 @@
 						<suiteXmlFile>${runner}</suiteXmlFile>
 					</suiteXmlFiles>
 					<systemPropertyVariables>
-						<TEST_MANAGER_API_HOST>https://runs.dev.lippia.io</TEST_MANAGER_API_HOST>
+						<TEST_MANAGER_API_HOST></TEST_MANAGER_API_HOST>
 						<TEST_MANAGER_API_PORT></TEST_MANAGER_API_PORT>
-						<TEST_MANAGER_RUN_NAME>[Demo] Run #1 7es7 Adapter Injector</TEST_MANAGER_RUN_NAME>
-						<TEST_MANAGER_PROJECT_CODE>GESHTJ</TEST_MANAGER_PROJECT_CODE>
+						<TEST_MANAGER_RUN_NAME></TEST_MANAGER_RUN_NAME>
+						<TEST_MANAGER_PROJECT_CODE></TEST_MANAGER_PROJECT_CODE>
 						<TEST_MANAGER_USERNAME></TEST_MANAGER_USERNAME>
 						<TEST_MANAGER_PASSWORD></TEST_MANAGER_PASSWORD>
 
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
-		</plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>15</source>
+                    <target>15</target>
+                </configuration>
+            </plugin>
+        </plugins>
 	</build>
 
 	<repositories>
 		<repository>
-			<id>crowdarRepo</id>
-			<name>crowdar-repository</name>
-			<url>https://nexus-v3-repositories.automation.crowdaronline.com/repository/maven-public/</url>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
 		</repository>
 	</repositories>
-
 
 </project>
