@@ -10,11 +10,11 @@ public class Basic {
 
     @Before(order = 0)
     public void beforeScenario(Scenario scenario) {
-        DriverManager.getDriverInstance().register(new DriverValidatorListener());
+       // DriverManager.getDriverInstance().register(new DriverValidatorListener());
     }
     @After
     public void afterScenario(Scenario scenario) {
-        DriverManager.dismissCurrentDriver();
+        //DriverManager.dismissCurrentDriver();
     }
 
 
